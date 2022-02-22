@@ -12,9 +12,10 @@ const userRoute = require('./routes/userRoute')
 const app = express()
 
 // Connect DB
-//mongodb://0.0.0.0/userdb
+//mongodb://0.0.0.0/smartedu-db
+
 mongoose
-  .connect('mongodb://0.0.0.0/smartedu-db')
+  .connect('mongodb+srv://ensar:dcZfAOQMzQxYCLD1@cluster0.zpdkn.mongodb.net/smartedu-db?retryWrites=true&w=majority')
   .then(() => {
     console.log('DB CONNECTED')
   }).catch( (err) => {
@@ -59,7 +60,7 @@ app.use('/courses',courseRoute)
 app.use('/categories',categoryRoute)
 app.use('/users',userRoute)
 
-const port = 3000
+const port = process.env.PORT || 5000
 app.listen(port,()=>{
     console.log(`run ${port}`)
 })
